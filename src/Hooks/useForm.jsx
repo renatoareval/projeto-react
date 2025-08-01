@@ -37,7 +37,7 @@ const useForm = (type) => {
     error,
     validate: () => validate(value),
     onBlur: () => validate(value),
-  }
-}
+  };
+};
 
-export default useForm
+export default useForm;

@@ -3,8 +3,12 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
 import Dogs from '../Assets/dogs.svg';
+import { UserContext } from '../UserContext';
 
 function Header() {
+
+    const { data, userLogout } = React.useContext(UserContext);
+
     return (
         <header className={styles.header}>
 
@@ -12,7 +16,16 @@ function Header() {
                 <Link className={styles.logo} to="/" aria-label="Dogs - Home">
                     <img src={Dogs} alt="Dogs" />
                 </Link>
-                <Link className={styles.login} to="/login">Login / Criar</Link>
+                {data ? (
+                    <Link className={styles.login} to="/conta">
+                        {data.nome}
+                        <button onClick={userLogout}>Sair</button>
+                    </Link>
+                ) : (
+                    <Link className={styles.login} to="/login">
+                        Login / Criar
+                    </Link>
+                )}
             </nav>
 
         </header>
@@ -20,3 +33,5 @@ function Header() {
 }
 
 export default Header
+
+
